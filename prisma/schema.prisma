@@ -1,0 +1,20 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Dish {
+  id           Int      @id @default(autoincrement())
+  name         String
+  ingredients  String[]
+  diet         String?
+  prep_time    Int? // in minutes
+  cook_time    Int? // in minutes
+  flavor_profile String?
+  course       String?
+  region       String?
+}

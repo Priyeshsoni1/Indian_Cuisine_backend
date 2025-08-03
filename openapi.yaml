@@ -1,0 +1,42 @@
+# openapi.yaml
+openapi: 3.0.0
+info:
+  title: Indian Cuisine API
+  version: 1.0.0
+paths:
+  /api/dishes:
+    get:
+      summary: Get all dishes
+      responses:
+        200:
+          description: List of dishes
+
+  /api/dishes/search:
+    get:
+      summary: Get dish by name
+      parameters:
+        - in: query
+          name: name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Dish object
+
+  /api/dishes/possible:
+    post:
+      summary: Get dishes by ingredients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        200:
+          description: Matching dishes
