@@ -1,8 +1,0 @@
-// ✔ GET /dishes
-// Returns all dishes.
-
-// ✔ GET /dishes/:name
-// Returns full info for a single dish.
-
-// ✔ GET /dishes/ingredients?items=rice,coconut
-// Returns all dishes that can be made from provided ingredients.
