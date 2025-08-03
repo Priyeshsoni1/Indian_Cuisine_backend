@@ -15,6 +15,42 @@ export async function getAllDishes(req: Request, res: Response) {
   }
 }
 
+export async function createDish(req: Request, res: Response) {
+    console.log("🚀 Incoming Body:", req.body); 
+
+  try {
+    const {
+      name,
+      ingredients,
+      diet,
+      prep_time,
+      cook_time,
+      flavor_profile,
+      course,
+      region,
+    } = req.body;
+
+    if (!name || !Array.isArray(ingredients) || ingredients.length === 0) {
+      return res.status(400).json({ message: "Name and ingredients are required." });
+    }
+
+    const newDish = await DishService.create({
+      name,
+      ingredients,
+      diet,
+      prep_time,
+      cook_time,
+      flavor_profile,
+      course,
+      region,
+    });
+
+    res.status(201).json(newDish);
+  } catch (error) {
+    console.error("Error creating dish:", error);
+    res.status(500).json({ message: "Failed to create dish" });
+  }
+}
 
 // controllers/DishController.ts
 export async function getDishSuggestions(req: Request, res: Response) {

@@ -24,7 +24,20 @@ async getAll({ pageIndex, pageSize }: { pageIndex: number; pageSize: number }) {
   };
 },
 
-
+async create(data: {
+    name: string;
+    ingredients: string[];
+    diet?: string;
+    prep_time?: number;
+    cook_time?: number;
+    flavor_profile?: string;
+    course?: string;
+    region?: string;
+  }) { 
+    return prisma.dish.create({
+      data,
+    });
+  },
   async getByName(name: string) {
     return prisma.dish.findFirst({
       where: { name: { equals: name, mode: "insensitive" } },
